@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savdo Markaz - Online Do'kon | 24/7</title>
+    <meta name="description" content="Eng arzon narxlarda sifatli mahsulotlar. Kiyim, oziq-ovqat, texnika va boshqalar.">
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <h2>Savdo<span>Markaz</span></h2>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-shopping-bag"></i>
+                Savdo<span>Markaz</span>
+            </a>
+            
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#home" class="nav-link active">Bosh sahifa</a></li>
+                <li><a href="#categories" class="nav-link">Kategoriyalar</a></li>
+                <li><a href="#products" class="nav-link">Mahsulotlar</a></li>
+                <li><a href="#deals" class="nav-link">Chegirmalar</a></li>
+                <li><a href="#testimonials" class="nav-link">Fikrlar</a></li>
+                <li><a href="#contact" class="nav-link">Aloqa</a></li>
+            </ul>
+
+            <div class="nav-icons">
+                <!-- Dark Mode Toggle -->
+                <button class="theme-toggle" id="themeToggle" title="Tungi rejim">
+                    <i class="fas fa-moon"></i>
+                </button>
+
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Qidirish...">
+                    <button onclick="searchProducts()"><i class="fas fa-search"></i></button>
+                </div>
+                
+                <div class="icon-btn" onclick="toggleWishlist()">
+                    <i class="fas fa-heart"></i>
+                    <span class="wishlist-count" id="wishlist-count">0</span>
+                </div>
+                
+                <div class="icon-btn cart-btn" onclick="toggleCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cart-count">0</span>
+                </div>
+                
+                <div class="icon-btn user-btn" onclick="toggleUserMenu()">
+                    <i class="fas fa-user"></i>
+                </div>
+                
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- User Menu Dropdown -->
+    <div class="dropdown-menu" id="userMenu">
+        <div id="guestMenu">
+            <a href="#" onclick="showLoginModal()"><i class="fas fa-sign-in-alt"></i> Kirish</a>
+            <a href="#" onclick="showRegisterModal()"><i class="fas fa-user-plus"></i> Ro'yxatdan o'tish</a>
+        </div>
+        <div id="userMenuContent" style="display:none;">
+            <div class="user-info">
+                <i class="fas fa-user-circle fa-2x"></i>
+                <span id="userNameDisplay">Foydalanuvchi</span>
+            </div>
+            <hr style="border:0; border-top:1px solid #eee; margin:10px 0;">
+            <a href="#" onclick="showOrders()"><i class="fas fa-box"></i> Buyurtmalarim</a>
+            <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Chiqish</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-slider">
+            <div class="slide active" style="background: linear-gradient(135deg, #667eea20 0%, #764ba220 100%);">
+                <div class="container hero-content">
+                    <div class="hero-text">
+                        <span class="hero-badge">🔥 Yangi Kolleksiya 2024</span>
+                        <h1>Eng Arzon Narxlarda <span>Xarid Qiling</span></h1>
+                        <p>Kiyim, oziq-ovqat, texnika va boshqa ko'plab mahsulotlar. Tezkor yetkazib berish xizmati. 24/7 xizmat ko'rsatamiz!</p>
+                        <div class="hero-buttons">
+                            <a href="#products" class="btn btn-primary">
+                                <i class="fas fa-shopping-bag"></i> Xarid qilish
+                            </a>
+                            <a href="https://t.me/savdomarkazbot" target="_blank" class="btn btn-secondary">
+                                <i class="fab fa-telegram"></i> Telegram bot
+                            </a>
+                        </div>
+                        <div class="hero-stats">
+                            <div class="stat"><h3>1000+</h3><p>Mahsulotlar</p></div>
+                            <div class="stat"><h3>5000+</h3><p>Mijozlar</p></div>
+                            <div class="stat"><h3>24/7</h3><p>Xizmat</p></div>
+                            <div class="stat"><h3>100%</h3><p>Kafolat</p></div>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3081/3081840.png" alt="Shopping">
+                        <div class="floating-card card-1"><i class="fas fa-truck"></i><span>Tez yetkazib berish</span></div>
+                        <div class="floating-card card-2"><i class="fas fa-shield-alt"></i><span>100% Kafolat</span></div>
+                        <div class="floating-card card-3"><i class="fas fa-tags"></i><span>Arzon narxlar</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories" id="categories">
+        <div class="container">
+            <h2 class="section-title">Kategoriyalar</h2>
+            <p class="section-subtitle">Barcha mahsulotlar bir joyda</p>
+            
+            <div class="categories-grid">
+                <div class="category-card" onclick="filterProducts('kiyim')">
+                    <div class="category-icon"><i class="fas fa-tshirt"></i></div>
+                    <h3>Kiyimlar</h3><p>500+ mahsulot</p>
+                </div>
+                <div class="category-card" onclick="filterProducts('ovqat')">
+                    <div class="category-icon"><i class="fas fa-apple-alt"></i></div>
+                    <h3>Oziq-ovqat</h3><p>300+ mahsulot</p>
+                </div>
+                <div class="category-card" onclick="filterProducts('texnika')">
+                    <div class="category-icon"><i class="fas fa-laptop"></i></div>
+                    <h3>Texnika</h3><p>200+ mahsulot</p>
+                </div>
+                <div class="category-card" onclick="filterProducts('uy')">
+                    <div class="category-icon"><i class="fas fa-couch"></i></div>
+                    <h3>Uy-ro'zg'or</h3><p>400+ mahsulot</p>
+                </div>
+                <div class="category-card" onclick="filterProducts('sport')">
+                    <div class="category-icon"><i class="fas fa-dumbbell"></i></div>
+                    <h3>Sport</h3><p>150+ mahsulot</p>
+                </div>
+                <div class="category-card" onclick="filterProducts('bolalar')">
+                    <div class="category-icon"><i class="fas fa-baby"></i></div>
+                    <h3>Bolalar</h3><p>250+ mahsulot</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Deals -->
+    <section class="deals" id="deals">
+        <div class="container">
+            <div class="deals-grid">
+                <div class="deal-card deal-large">
+                    <div class="deal-content">
+                        <span class="deal-badge">Chegirma 50%</span>
+                        <h2>Qishki Kolleksiya</h2>
+                        <p>Barcha kiyimlarga 50% chegirma</p>
+                        <a href="#products" class="btn btn-primary">Xarid qilish</a>
+                    </div>
+                    <div class="deal-image">
+                        <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=500" alt="Sale">
+                    </div>
+                </div>
+                <div class="deal-card">
+                    <div class="deal-content">
+                        <span class="deal-badge">Yangi</span>
+                        <h3>Texnika</h3>
+                        <p>Eng so'nggi modellari</p>
+                        <a href="#products" class="btn btn-outline">Ko'rish</a>
+                    </div>
+                </div>
+                <div class="deal-card">
+                    <div class="deal-content">
+                        <span class="deal-badge">Hit</span>
+                        <h3>Oziq-ovqat</h3>
+                        <p>Tabiiy va sifatli</p>
+                        <a href="#products" class="btn btn-outline">Ko'rish</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <h2 class="section-title">Ommabop Mahsulotlar</h2>
+            <p class="section-subtitle">Eng sifatli va arzon mahsulotlar</p>
+            
+            <div class="products-header">
+                <div class="filter-tabs">
+                    <button class="filter-tab active" data-filter="all">Barchasi</button>
+                    <button class="filter-tab" data-filter="kiyim">👕 Kiyimlar</button>
+                    <button class="filter-tab" data-filter="ovqat">🍎 Oziq-ovqat</button>
+                    <button class="filter-tab" data-filter="texnika">💻 Texnika</button>
+                    <button class="filter-tab" data-filter="uy">🏠 Uy-ro'zg'or</button>
+                    <button class="filter-tab" data-filter="sport">⚽ Sport</button>
+                    <button class="filter-tab" data-filter="bolalar"> Bolalar</button>
+                </div>
+                <div class="sort-options">
+                    <select id="sortSelect" onchange="sortProducts()">
+                        <option value="default">Saralash</option>
+                        <option value="price-asc">Arzondan qimmatga</option>
+                        <option value="price-desc">Qimmatdan arzonga</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="products-grid" id="products-grid"></div>
+            
+            <div class="load-more">
+                <button class="btn btn-outline" onclick="loadMoreProducts()">
+                    <i class="fas fa-spinner"></i> Yana yuklash
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon"><i class="fas fa-shipping-fast"></i></div>
+                    <h3>Tez Yetkazib Berish</h3><p>24 soat ichida yetkazamiz</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon"><i class="fas fa-money-bill-wave"></i></div>
+                    <h3>Naqd Pulsiz To'lov</h3><p>Click, Payme, Apelsin</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon"><i class="fas fa-undo"></i></div>
+                    <h3>14 Kun Ichida Qaytarish</h3><p>Mahsulot yoqmasa qaytaramiz</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon"><i class="fas fa-headset"></i></div>
+                    <h3>24/7 Qo'llab-quvvatlash</h3><p>Har doim yoninizda</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">Mijozlar Fikrlari</h2>
+            <p class="section-subtitle">Bizning mijozlarimiz nima deyishadi</p>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"Juda ajoyib do'kon! Mahsulotlar sifatli va narxlar arzon."</p>
+                    <div class="testimonial-author">
+                        <img src="https://i.pravatar.cc/150?img=1" alt="User">
+                        <div><h4>Azizbek Botirov</h4><span>Doimiy mijoz</span></div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"Telegram bot orqali buyurtma berish juda qulay."</p>
+                    <div class="testimonial-author">
+                        <img src="https://i.pravatar.cc/150?img=5" alt="User">
+                        <div><h4>Malika Karimova</h4><span>Yangi mijoz</span></div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                    <p>"Kiyimlar juda sifatli. O'lchami to'g'ri keldi."</p>
+                    <div class="testimonial-author">
+                        <img src="https://i.pravatar.cc/150?img=3" alt="User">
+                        <div><h4>Jasur Aliyev</h4><span>Doimiy mijoz</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <div class="newsletter-text">
+                    <h2>Yangiliklardan xabardor bo'ling</h2>
+                    <p>Chegirmalar va yangi mahsulotlar haqida birinchi bo'lib bilib oling</p>
+                </div>
+                <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+                    <input type="email" placeholder="Email manzilingiz" required>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Obuna bo'lish</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2933/2933116.png" alt="About">
+                </div>
+                <div class="about-text">
+                    <h2>Biz Haqimizda</h2>
+                    <p><strong>Savdo Markaz</strong> - O'zbekistondagi eng yirik online savdo platformalaridan biri.</p>
+                    <div class="about-list">
+                        <div class="about-item"><i class="fas fa-check-circle"></i><span>100% original mahsulotlar</span></div>
+                        <div class="about-item"><i class="fas fa-check-circle"></i><span>Tezkor yetkazib berish</span></div>
+                        <div class="about-item"><i class="fas fa-check-circle"></i><span>Qulay to'lov usullari</span></div>
+                        <div class="about-item"><i class="fas fa-check-circle"></i><span>7/24 qo'llab-quvvatlash</span></div>
+                    </div>
+                    <a href="https://t.me/savdomarkazbot" target="_blank" class="btn btn-primary"><i class="fab fa-telegram"></i> Telegram kanalimiz</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Biz Bilan Bog'laning</h2>
+            <p class="section-subtitle">Savollaringiz bo'lsa, bemalol yozing</p>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item"><i class="fas fa-map-marker-alt"></i><div><h4>Manzil</h4><p>Toshkent shahri, O'zbekiston</p></div></div>
+                    <div class="contact-item"><i class="fas fa-phone"></i><div><h4>Telefon</h4><p>+998 90 123 45 67</p></div></div>
+                    <div class="contact-item"><i class="fas fa-envelope"></i><div><h4>Email</h4><p>info@savdomarkaz.uz</p></div></div>
+                    <div class="contact-item"><i class="fab fa-telegram"></i><div><h4>Telegram</h4><p>@savdomarkazbot</p></div></div>
+                    <div class="social-links-large">
+                        <a href="https://t.me/savdomarkazbot" target="_blank"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm" onsubmit="submitContactForm(event)">
+                        <div class="form-group"><input type="text" placeholder="Ismingiz" required></div>
+                        <div class="form-group"><input type="email" placeholder="Email" required></div>
+                        <div class="form-group"><input type="tel" placeholder="Telefon"></div>
+                        <div class="form-group"><textarea placeholder="Xabaringiz" rows="5" required></textarea></div>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Yuborish</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Savdo<span>Markaz</span></h3>
+                    <p>Eng arzon narxlarda sifatli mahsulotlar. 24/7 xizmat ko'rsatamiz.</p>
+                    <div class="social-links">
+                        <a href="https://t.me/savdomarkazbot" target="_blank"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Tezkor havolalar</h4>
+                    <ul>
+                        <li><a href="#home">Bosh sahifa</a></li>
+                        <li><a href="#products">Mahsulotlar</a></li>
+                        <li><a href="#about">Biz haqimizda</a></li>
+                        <li><a href="#contact">Aloqa</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Kategoriyalar</h4>
+                    <ul>
+                        <li><a href="#" onclick="filterProducts('kiyim')">Kiyimlar</a></li>
+                        <li><a href="#" onclick="filterProducts('ovqat')">Oziq-ovqat</a></li>
+                        <li><a href="#" onclick="filterProducts('texnika')">Texnika</a></li>
+                        <li><a href="#" onclick="filterProducts('uy')">Uy-ro'zg'or</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Bizning bot</h4>
+                    <p>Telegram orqali buyurtma bering</p>
+                    <a href="https://t.me/savdomarkazbot" target="_blank" class="btn btn-telegram"><i class="fab fa-telegram"></i> @savdomarkazbot</a>
+                </div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2024 Savdo Markaz. Barcha huquqlar himoyalangan.</p></div>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header"><h3><i class="fas fa-shopping-cart"></i> Savat</h3><button class="close-cart" onclick="toggleCart()"><i class="fas fa-times"></i></button></div>
+        <div class="cart-items" id="cart-items"><div class="empty-cart"><i class="fas fa-shopping-basket"></i><p>Savat hozircha bo'sh</p><button onclick="toggleCart()" class="btn btn-primary">Xarid qilish</button></div></div>
+        <div class="cart-footer">
+            <div class="cart-total"><span>Jami:</span><span id="cart-total">$0</span></div>
+            <button class="btn btn-checkout" onclick="checkout()"><i class="fab fa-telegram"></i> Buyurtma berish</button>
+        </div>
+    </div>
+
+    <!-- Wishlist Sidebar -->
+    <div class="wishlist-overlay" id="wishlist-overlay" onclick="toggleWishlist()"></div>
+    <div class="wishlist-sidebar" id="wishlist-sidebar">
+        <div class="wishlist-header"><h3><i class="fas fa-heart"></i> Sevimlilar</h3><button class="close-wishlist" onclick="toggleWishlist()"><i class="fas fa-times"></i></button></div>
+        <div class="wishlist-items" id="wishlist-items"><div class="empty-wishlist"><i class="fas fa-heart-broken"></i><p>Hozircha sevimlilar yo'q</p></div></div>
+    </div>
+
+    <!-- Product Modal -->
+    <div class="modal" id="productModal">
+        <div class="modal-content"><button class="modal-close" onclick="closeProductModal()">&times;</button><div class="modal-body" id="modalBody"></div></div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content auth-modal">
+            <button class="modal-close" onclick="closeLoginModal()">&times;</button>
+            <h2>Kirish</h2>
+            <form onsubmit="handleLogin(event)">
+                <input type="email" id="loginEmail" placeholder="Email" required>
+                <input type="password" id="loginPass" placeholder="Parol" required>
+                <button type="submit" class="btn btn-primary">Kirish</button>
+            </form>
+            <p>Hisobingiz yo'qmi? <a href="#" onclick="switchAuth('register')">Ro'yxatdan o'tish</a></p>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="registerModal">
+        <div class="modal-content auth-modal">
+            <button class="modal-close" onclick="closeRegisterModal()">&times;</button>
+            <h2>Ro'yxatdan o'tish</h2>
+            <form onsubmit="handleRegister(event)">
+                <input type="text" id="regName" placeholder="Ismingiz" required>
+                <input type="email" id="regEmail" placeholder="Email" required>
+                <input type="password" id="regPass" placeholder="Parol" required>
+                <button type="submit" class="btn btn-primary">Ro'yxatdan o'tish</button>
+            </form>
+            <p>Hisob bormi? <a href="#" onclick="switchAuth('login')">Kirish</a></p>
+        </div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
+
+    <script src="main.js"></script>
+</body>
+</html>
